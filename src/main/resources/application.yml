@@ -1,0 +1,17 @@
+server:
+  servlet:
+    context-path: /api
+
+spring:
+  jpa:
+    database: postgresql
+  data:
+    mongodb:
+      host: mongodb
+      port: 27017
+      database: test
+  datasource:
+    url: jdbc:postgresql://postgres:5432/test
+    username: challenge
+    password: challenge
+    driver-class-name: org.postgresql.Driver

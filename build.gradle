@@ -1,0 +1,64 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.0'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+}
+
+group = 'com.niccolodiamanti'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+ext.versions = [
+        springdoc_openapi_ui_version            : "1.5.0",
+        spring_boot_starter_data_mongodb_version: "2.4.0",
+        testcontainers_version                  : "1.15.0",
+        postgresql_version                      : "42.2.18",
+        embedded_database_spring_test_version   : "1.6.0"
+]
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params'
+    testImplementation 'org.mockito:mockito-junit-jupiter'
+
+    //SWAGGER
+    implementation "org.springdoc:springdoc-openapi-ui:${versions.springdoc_openapi_ui_version}"
+
+    //POSTGRESQL
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+    implementation "org.postgresql:postgresql:${versions.postgresql_version}"
+
+    //MONGODB
+    implementation "org.springframework.boot:spring-boot-starter-data-mongodb:${versions.spring_boot_starter_data_mongodb_version}"
+
+    //TEST CONTAINERS
+    testCompile "org.testcontainers:testcontainers:${versions.testcontainers_version}"
+    testCompile "org.testcontainers:jdbc:${versions.testcontainers_version}"
+    testCompile "org.testcontainers:mongodb:${versions.testcontainers_version}"
+    testCompile "org.testcontainers:postgresql:${versions.testcontainers_version}"
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        exceptionFormat = 'full'
+    }
+}
