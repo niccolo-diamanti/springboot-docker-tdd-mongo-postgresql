@@ -40,8 +40,6 @@ It's provided by local [Swagger](http://localhost:8080/api/swagger-ui.html)
 # Examples
 After docker deployment, you can go on the [Swagger](http://localhost:8080/api/swagger-ui.html) page that should looke like this. 
 We can try API services on this page. 
-![image](https://user-images.githubusercontent.com/36787286/100682874-58ddfc80-3377-11eb-942b-c6bf7ac4782e.png)
-
 ### 1 - Create cart
 Open the POST - /cart/v1/create tab and click "try it out". Then insert a json payload like this to create a cart with 1 product and click "Execute" button:
 ```
